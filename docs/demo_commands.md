@@ -25,6 +25,7 @@ uvicorn app.main:app --reload
 ```
 
 ## Open the frontend
+- http://127.0.0.1:8000/demo
 - http://127.0.0.1:8000/ui
 
 ## Open API docs

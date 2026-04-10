@@ -1,6 +1,23 @@
 # Frontend Demo Inputs
 
-## Tab 1: Stocking Priority Prediction
+## Tab 1: Business Demo Dashboard
+- Default landing page:
+  - Open `/demo` or `/ui`
+  - Demo Mode starts enabled and the Business Demo Dashboard is active by default
+- Quick scenarios:
+  - High-demand premium electronics
+  - Perishable grocery item
+  - High-promotion beauty product
+  - Low-margin bulky product
+  - High-risk delayed-supply item
+- Recommended coordinator talking points:
+  - Start from the executive overview
+  - Click one quick scenario card
+  - Show the unified output cards for priority, sales, recommendation, and risk
+  - Use the side-by-side scenario comparison buttons
+  - Finish with the built-in Model Insights Summary
+
+## Tab 2: Stocking Priority Prediction
 - High / Flags Off:
   - Samsung Computers 1018
   - Predicted High priority
@@ -14,7 +31,7 @@
   - Predicted Low priority
   - Short shelf life and low fill rate caution flags
 
-## Tab 2: Sales Prediction
+## Tab 3: Sales Prediction
 - Home demo:
   - Storage Box Set
   - Mid tier
@@ -24,7 +41,7 @@
 - Coordinator talking point:
   - Compare predicted daily units with profit-per-shelf-unit and capacity utilization
 
-## Tab 3: Recommendation Engine
+## Tab 4: Recommendation Engine
 - Core portfolio demo:
   - Sony Headphones
   - Lakme Lipstick
@@ -37,7 +54,7 @@
   - Maximize Profit Density
   - Minimize Perishability Risk
 
-## Tab 4: Historical Query
+## Tab 5: Historical Query
 - Grocery risk query:
   - Category = Grocery
   - Brand tier = Budget
@@ -50,14 +67,14 @@
   - Price min = 20
   - Sort by = Profit Density
 
-## Tab 5: Scenario Simulator
+## Tab 6: Scenario Simulator
 - Flash sale demo:
   - Base product = Lakme Lipstick
   - Compare No Promotion vs Flash Sale vs Festival Push
 - Shelf-life demo:
   - Compare long shelf life vs tighter shelf life vs perishable risk
 
-## Tab 6: Model Insights
+## Tab 7: Model Insights
 - Start with Dataset Overview:
   - point out rows, columns, and the two targets
 - Move to Feature Engineering:
@@ -73,7 +90,7 @@
   - show which categories dominate High priority
   - explain why perishability and fill rate remain business constraints
 
-## Tab 7: Model Lab
+## Tab 8: Model Lab
 - Use Electronics Compare:
   - show the three live logistic variants side by side
   - point out that the deep learning and Hugging Face models are benchmark-only in the current local app
@@ -85,10 +102,8 @@
   - explain that the deployed choice balanced performance, interpretability, stability, and deployment ease
 
 ## Recommended coordinator flow
-1. Start on Stocking Priority and click the High / Medium / Low sample buttons to show the full spread of outcomes.
-2. Move to Sales Prediction to show that demand alone is now estimated explicitly.
-3. Open Recommendation Engine and switch goals to show business trade-offs.
-4. Use Historical Query to prove recommendations are supported by data slices.
-5. Finish with Scenario Simulator for promotion and shelf-life what-if analysis.
-6. Open Model Insights to explain the AI/ML design, experiments, and coordinator-facing evidence.
-7. Finish in Model Lab to show the full Week 4 experimentation story and justify why the hybrid logistic model was deployed.
+1. Start on Business Demo Dashboard and click one of the quick scenarios.
+2. Explain the full Input → Prediction → Recommendation → Insight story from the top-level cards.
+3. Use the scenario comparison buttons to show business trade-offs on the same product.
+4. Use the built-in Model Insights Summary before moving anywhere else.
+5. If needed, open the technical tabs for deeper endpoint-level validation.

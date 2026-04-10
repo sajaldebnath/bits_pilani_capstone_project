@@ -169,6 +169,11 @@ def ui(request: Request):
     return templates.TemplateResponse(request, "index.html", {})
 
 
+@app.get("/demo")
+def demo(request: Request):
+    return templates.TemplateResponse(request, "index.html", {})
+
+
 @app.get("/insights/summary", response_model=InsightsSummaryResponse)
 def insights_summary():
     try:

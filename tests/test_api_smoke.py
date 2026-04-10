@@ -59,6 +59,12 @@ def test_health():
     assert "sales_model_exists" in body
 
 
+def test_demo_route_renders_dashboard():
+    response = client.get("/demo")
+    assert response.status_code == 200
+    assert "Business Demo Dashboard" in response.text
+
+
 def test_model_info_returns_multi_model_metadata():
     response = client.get("/model-info")
     assert response.status_code == 200

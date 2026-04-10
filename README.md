@@ -28,6 +28,7 @@ Current working repository:
 - **Scenario simulator** for side-by-side business what-if analysis
 - **Model Insights** tab for dataset, feature engineering, metrics, interpretability, and business findings
 - **Model Lab** tab for comparing explored Week 4 model families
+- **Business Demo Dashboard** tab and `/demo` route for live coordinator-facing walkthroughs
 - Precomputed artifacts for demo-friendly insights and benchmarking
 
 ## Core Architecture
@@ -223,6 +224,7 @@ Backward-compatible wrapper:
 
 Open these in the browser:
 
+- Business demo landing page: [http://127.0.0.1:8000/demo](http://127.0.0.1:8000/demo)
 - Frontend UI: [http://127.0.0.1:8000/ui](http://127.0.0.1:8000/ui)
 - Swagger docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 - ReDoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
@@ -281,6 +283,7 @@ These are defined centrally in `app/config.py`.
 ### UI endpoint
 
 - `GET /ui`
+- `GET /demo`
 
 ## Example Commands
 
@@ -353,27 +356,27 @@ curl -X POST "http://127.0.0.1:8000/predict/compare-models" \
 
 ## Frontend Sections
 
-The `/ui` dashboard contains these tabs:
+The `/ui` and `/demo` dashboard contains these tabs:
 
-1. `Stocking Priority Prediction`
-2. `Sales Prediction`
-3. `Recommendation Engine`
-4. `Historical Query`
-5. `Scenario Simulator`
-6. `Model Insights`
-7. `Model Lab`
+1. `Business Demo Dashboard`
+2. `Stocking Priority Prediction`
+3. `Sales Prediction`
+4. `Recommendation Engine`
+5. `Historical Query`
+6. `Scenario Simulator`
+7. `Model Insights`
+8. `Model Lab`
 
-Each tab is designed for non-technical demos and includes short explanations, curated examples, and card or table-based outputs instead of raw JSON.
+The first tab is optimized for a live academic demonstration and shows the full business flow on one screen. The technical tabs remain available for deeper explanation and API-oriented walkthroughs.
 
 ## Recommended Demo Flow
 
-1. Start with **Stocking Priority Prediction** and show the mixed High, Medium, and Low sample cases.
-2. Move to **Sales Prediction** to show demand estimation on the same input structure.
-3. Use **Recommendation Engine** to compare optimization goals such as `maximize_profit` and `minimize_perishability_risk`.
-4. Open **Historical Query** to show evidence from the dataset.
-5. Use **Scenario Simulator** to compare the same product under different promotion or operational conditions.
-6. Open **Model Insights** to explain the dataset, feature engineering, interpretability, and business findings.
-7. Finish with **Model Lab** to show the broader model comparison and explain why the deployed hybrid logistic model was selected.
+1. Open **/demo** and stay on **Business Demo Dashboard** for the main live story.
+2. Click a quick scenario such as `High-demand premium electronics` or `Perishable grocery item`.
+3. Walk through the unified output cards: stocking priority, predicted sales, recommendation summary, and risk flags.
+4. Switch the comparison buttons to show `No Promotion vs Flash Sale`, `Low vs High Marketing`, or `Long vs Short Shelf Life`.
+5. Use the built-in **Model Insights Summary** on the same page to justify the models in non-technical language.
+6. Only then move to the technical tabs if the coordinator wants to see deeper endpoint-specific evidence.
 
 ## Testing
 
