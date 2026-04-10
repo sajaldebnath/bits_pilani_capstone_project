@@ -5,7 +5,6 @@ author: "Sajal Debnath"
 date: "April 10, 2026"
 ---
 
-\newpage
 
 # Abstract
 
@@ -17,7 +16,6 @@ The final system is built on a dataset of 2,000 retail records and 64 variables.
 
 The deployed system uses two practical models: a hybrid logistic regression classifier for stocking priority and a log-transformed Ridge regression model for demand estimation. These choices were made not simply on raw score, but on a balanced view of interpretability, semantic coverage, stability, and suitability for live deployment in FastAPI. The report documents the complete analytical workflow, presents model comparisons and business insights, and explains how the system supports a business-friendly demonstration through an integrated frontend dashboard.
 
-\newpage
 
 # 1. Problem Statement
 
@@ -441,7 +439,7 @@ At first glance, the operational classification sweep and the Week 4 model-lab b
 1. the operational sweep is a narrow deployment-focused comparison against the engineered label
 2. the model-lab benchmark is a broader representation study across multiple modeling families
 
-The report should therefore avoid overclaiming. The correct interpretation is:
+The report should therefore avoid over-claiming. The correct interpretation is:
 
 - structured features are extremely informative for the engineered business target
 - adding text is still useful when representation design is handled properly
