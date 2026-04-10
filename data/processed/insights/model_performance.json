@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-08T06:18:27+00:00",
+  "generated_at": "2026-04-10T04:36:21+00:00",
   "classification": {
     "best_model": "Hybrid Logistic Regression",
     "best_variant": "C=0.5",
@@ -163,8 +163,8 @@
           "target_transform": "log1p"
         },
         "status": "benchmarked",
-        "mae": 9.7055,
-        "rmse": 12.1191,
+        "mae": 9.7058,
+        "rmse": 12.1194,
         "r2": 0.813
       },
       {
@@ -175,7 +175,7 @@
           "target_transform": "log1p"
         },
         "status": "benchmarked",
-        "mae": 9.7627,
+        "mae": 9.7626,
         "rmse": 12.2001,
         "r2": 0.8105
       }
@@ -318,8 +318,8 @@
             "target_transform": "log1p"
           },
           "status": "benchmarked",
-          "mae": 9.7055,
-          "rmse": 12.1191,
+          "mae": 9.7058,
+          "rmse": 12.1194,
           "r2": 0.813
         },
         {
@@ -330,7 +330,7 @@
             "target_transform": "log1p"
           },
           "status": "benchmarked",
-          "mae": 9.7627,
+          "mae": 9.7626,
           "rmse": 12.2001,
           "r2": 0.8105
         }

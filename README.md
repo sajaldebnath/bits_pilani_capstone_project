@@ -203,22 +203,22 @@ pip install -r requirements-dev.txt
 Run these when you want to regenerate models or refresh insights/model-lab outputs:
 
 ```bash
-.venv/bin/python scripts/train_priority_model.py
-.venv/bin/python scripts/train_sales_model.py
-.venv/bin/python scripts/generate_insights_artifacts.py
-.venv/bin/python scripts/generate_model_lab_artifacts.py
+./venv/bin/python scripts/train_priority_model.py
+./venv/bin/python scripts/train_sales_model.py
+./venv/bin/python scripts/generate_insights_artifacts.py
+./venv/bin/python scripts/generate_model_lab_artifacts.py
 ```
 
 Backward-compatible wrapper:
 
 ```bash
-.venv/bin/python scripts/train_model.py
+./venv/bin/python scripts/train_model.py
 ```
 
 ## Running the Application
 
 ```bash
-.venv/bin/python -m uvicorn app.main:app --reload
+./venv/bin/python -m uvicorn app.main:app --reload
 ```
 
 Open these in the browser:

@@ -2,6 +2,6 @@ feature,raw_feature,coefficient,interpretation
 Footfall Index,num__Footfall_Index,0.1032,Higher footfall indicates stronger shopper traffic around the product. In this model view it increases the signal for higher daily sales.
 Competitor Price,num__Competitor_Price,0.0405,Relative price position affects competitiveness in-store. In this model view it increases the signal for higher daily sales.
 Loyalty Program Usage Count,num__Loyalty_Program_Usage_Count,0.0394,Loyalty usage reflects engaged repeat shoppers. In this model view it increases the signal for higher daily sales.
-Avg Basket Size,num__Avg_Basket_Size,0.0241,Basket size gives context on cross-sell and shopping missions. In this model view it increases the signal for higher daily sales.
+Avg Basket Size,num__Avg_Basket_Size,0.0242,Basket size gives context on cross-sell and shopping missions. In this model view it increases the signal for higher daily sales.
 Website Visits,num__Website_Visits,0.0193,Website traffic helps represent broader customer attention. In this model view it increases the signal for higher daily sales.
 App Traffic Index,num__App_Traffic_Index,0.0165,App activity acts as a digital demand signal. In this model view it increases the signal for higher daily sales.

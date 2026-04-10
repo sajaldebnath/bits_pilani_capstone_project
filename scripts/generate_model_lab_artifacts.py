@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import ast
 import json
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -39,7 +40,7 @@ from app.model_lab_runtime import (
     split_model_lab_dataset,
 )
 
-WEEK4_NOTEBOOK_PATH = ROOT.parent.parent / "Project Files" / "BITS_Project_Fourth_Week_Tasks_Sajal.ipynb"
+WEEK4_NOTEBOOK_FILENAME = "BITS_Project_Fourth_Week_Tasks_Sajal.ipynb"
 
 MODEL_METADATA = {
     "logreg_text_only": {
@@ -109,6 +110,49 @@ def write_json(path: Path, payload: Dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2))
 
 
+def candidate_week4_notebook_paths() -> List[Path]:
+    candidates: List[Path] = []
+
+    env_path = os.getenv("MODEL_LAB_NOTEBOOK_PATH")
+    if env_path:
+        candidates.append(Path(env_path).expanduser())
+
+    local_notebooks_dir = ROOT / "notebooks"
+    candidates.extend(
+        [
+            local_notebooks_dir / WEEK4_NOTEBOOK_FILENAME,
+            local_notebooks_dir / "BITS_Project_Fourth_Week_Tasks_Sajal_Requested_Feature_Engineering_v1.ipynb",
+            ROOT.parent / "Project Files" / WEEK4_NOTEBOOK_FILENAME,
+            ROOT.parent.parent / "Project Files" / WEEK4_NOTEBOOK_FILENAME,
+        ]
+    )
+
+    candidates.extend(sorted(local_notebooks_dir.glob("BITS_Project_Fourth_Week_Tasks_Sajal*.ipynb")))
+
+    unique_candidates: List[Path] = []
+    seen = set()
+    for path in candidates:
+        resolved = path.expanduser()
+        if resolved not in seen:
+            unique_candidates.append(resolved)
+            seen.add(resolved)
+    return unique_candidates
+
+
+def resolve_week4_notebook_path() -> Path:
+    candidates = candidate_week4_notebook_paths()
+    for path in candidates:
+        if path.exists():
+            return path
+
+    searched = "\n".join(f"- {path}" for path in candidates)
+    raise RuntimeError(
+        "Week 4 notebook not found. Checked these locations:\n"
+        f"{searched}\n"
+        "Place the notebook in the repository's 'notebooks/' directory or set MODEL_LAB_NOTEBOOK_PATH."
+    )
+
+
 def notebook_json(path: Path) -> Dict[str, Any]:
     if not path.exists():
         raise RuntimeError(f"Week 4 notebook not found at '{path}'")
@@ -164,7 +208,12 @@ def extract_report_metrics(output_text: str) -> Dict[str, Any]:
     return metrics
 
 
-def extract_notebook_benchmark_metrics(nb: Dict[str, Any], needle: str, model_key: str) -> Dict[str, Any]:
+def extract_notebook_benchmark_metrics(
+    nb: Dict[str, Any],
+    needle: str,
+    model_key: str,
+    notebook_path: Path,
+) -> Dict[str, Any]:
     for cell in nb["cells"]:
         source = "".join(cell.get("source", []))
         if needle in source:
@@ -177,7 +226,7 @@ def extract_notebook_benchmark_metrics(nb: Dict[str, Any], needle: str, model_ke
                 "representation": "hybrid" if model_key == "custom_dl_hybrid" else "text only",
                 "status": "benchmark_only",
                 "compare_mode": "benchmark_only",
-                "benchmark_source": f"Week 4 notebook output: {WEEK4_NOTEBOOK_PATH.name}",
+                "benchmark_source": f"Week 4 notebook output: {notebook_path.name}",
                 "accuracy": metrics["accuracy"],
                 "precision_macro": metrics["precision_macro"],
                 "recall_macro": metrics["recall_macro"],
@@ -185,7 +234,7 @@ def extract_notebook_benchmark_metrics(nb: Dict[str, Any], needle: str, model_ke
                 "weighted_f1": metrics["weighted_f1"],
                 "notes": "Shown as a benchmark summary because no runtime artifact is currently attached to the app.",
             }
-    raise RuntimeError(f"Unable to find notebook cell for '{needle}' in '{WEEK4_NOTEBOOK_PATH}'")
+    raise RuntimeError(f"Unable to find notebook cell for '{needle}' in '{notebook_path}'")
 
 
 def deployment_choice(performance_rows: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -250,6 +299,7 @@ def deployment_choice(performance_rows: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 def main() -> None:
     generated_at = utc_timestamp()
+    week4_notebook_path = resolve_week4_notebook_path()
 
     df = load_model_lab_dataset()
     train_df, _, test_df = split_model_lab_dataset(df)
@@ -276,10 +326,10 @@ def main() -> None:
         elif model_key == "logreg_hybrid":
             persist_model_lab_bundle(settings.model_lab_hybrid_model_path, bundle)
 
-    nb = notebook_json(WEEK4_NOTEBOOK_PATH)
+    nb = notebook_json(week4_notebook_path)
     advanced_rows = [
-        extract_notebook_benchmark_metrics(nb, "CustomDL_Hybrid", "custom_dl_hybrid"),
-        extract_notebook_benchmark_metrics(nb, "HF_DistilBERT_TextOnly", "hf_distilbert_text_only"),
+        extract_notebook_benchmark_metrics(nb, "CustomDL_Hybrid", "custom_dl_hybrid", week4_notebook_path),
+        extract_notebook_benchmark_metrics(nb, "HF_DistilBERT_TextOnly", "hf_distilbert_text_only", week4_notebook_path),
     ]
 
     performance_table = logistic_results + advanced_rows
@@ -308,7 +358,7 @@ def main() -> None:
         "source_notebooks": [
             {
                 "label": "Week 4 model comparison notebook",
-                "path": str(WEEK4_NOTEBOOK_PATH),
+                "path": str(week4_notebook_path),
             }
         ],
         "models": models,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-08T06:18:27+00:00",
+  "generated_at": "2026-04-10T04:36:21+00:00",
   "priority_model": {
     "model_name": "Hybrid Logistic Regression",
     "top_numeric_drivers_for_high_priority": [
@@ -135,7 +135,7 @@
       {
         "feature": "Avg Basket Size",
         "raw_feature": "num__Avg_Basket_Size",
-        "coefficient": 0.0241,
+        "coefficient": 0.0242,
         "interpretation": "Basket size gives context on cross-sell and shopping missions. In this model view it increases the signal for higher daily sales."
       },
       {

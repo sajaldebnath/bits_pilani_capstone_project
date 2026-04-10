@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-08T06:18:27+00:00",
+  "generated_at": "2026-04-10T04:36:21+00:00",
   "dataset_overview": {
     "rows": 2000,
     "columns": 64,
@@ -203,7 +203,7 @@
     "regression": {
       "selected_demo_model": "Sales Regression Model",
       "selected_variant": "Ridge alpha=1.0",
-      "deployed_rmse": 12.1191,
+      "deployed_rmse": 12.1194,
       "best_experiment": "Ridge alpha=5.0",
       "best_rmse": 11.9143,
       "note": "A small Ridge alpha sweep was tried offline. The UI only compares precomputed results."
