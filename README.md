@@ -411,3 +411,13 @@ Recommendations combine:
 - supplier delay and fill-rate risk
 
 This makes the project more realistic for retail coordination and academic demonstration.
+
+## Demo Screenshots
+This section has screenshots from the application demo.
+
+### Main Application Demo
+
+![Application Demo](./artifacts/Demo-1.gif) 
+
+### Swagger UI and Redoc UI Demo
+![Swagger/Redoc UI Demo](./artifacts/Demo-2.gif)
