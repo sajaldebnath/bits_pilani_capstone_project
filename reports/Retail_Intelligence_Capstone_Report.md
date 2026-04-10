@@ -113,11 +113,11 @@ Exploratory data analysis established the statistical and business context for t
 
 The first question was whether the regression target, `Daily_Units_Sold`, had a reasonable distribution for supervised learning.
 
-![Figure 1. Distribution of daily units sold.](assets/eda_target_distribution.png){ width=90% }
+![Figure 1. Distribution of daily units sold.](./assets/eda_target_distribution.png){ width=90% }
 
 The distribution is centered around a mean of **112.26 units** and a median of **113 units**, with a standard deviation of **28.58 units**. The interquartile range spans from **93** to **133** units. The closeness of the mean and median indicates that the target is not severely skewed, and the density curve suggests that the distribution is reasonably smooth rather than fragmented into disconnected modes. This is favorable for both linear and tree-based regressors.
 
-![Figure 2. Boxplot of daily units sold.](assets/eda_target_boxplot.png){ width=80% }
+![Figure 2. Boxplot of daily units sold.](./assets/eda_target_boxplot.png){ width=80% }
 
 The boxplot confirms that the target contains some low and high extremes, but not in a way that suggests pathological outliers. The observed range extends from **17** to **204** units. That spread is wide enough to make forecasting meaningful, yet compact enough that simple regression families remain viable. This finding justified the use of classical baselines such as linear, Ridge, and tree-based regressors in Week 3.
 
@@ -125,7 +125,7 @@ The boxplot confirms that the target contains some low and high extremes, but no
 
 Correlation analysis was used to understand which continuous variables moved with demand and which variables likely captured overlapping information.
 
-![Figure 3. Correlation heatmap for selected numeric variables.](assets/eda_correlation_heatmap.png){ width=95% }
+![Figure 3. Correlation heatmap for selected numeric variables.](./assets/eda_correlation_heatmap.png){ width=95% }
 
 Three insights stand out immediately. First, `Current_Price` has the strongest negative relationship with the target at approximately **-0.80**, which is consistent with basic price elasticity: higher selling prices generally suppress unit movement. Second, `Footfall_Index` has the strongest positive relationship with demand at approximately **0.44**, showing that customer traffic is a major commercial driver. Third, `Discount_Percentage` and `Social_Media_Sentiment` are both positively associated with demand, at roughly **0.23** and **0.22**, suggesting that both promotional pressure and consumer perception contribute to product movement.
 
@@ -135,11 +135,11 @@ The heatmap also reveals very high correlation among pricing variables such as `
 
 To go beyond linear correlation, the EDA notebook estimated feature importance using a Random Forest regressor and then validated those findings with permutation importance.
 
-![Figure 4. Random Forest feature importance for demand forecasting.](assets/eda_random_forest_importance.png){ width=90% }
+![Figure 4. Random Forest feature importance for demand forecasting.](./assets/eda_random_forest_importance.png){ width=90% }
 
 The Random Forest importance ranking is sharply dominated by `Current_Price` (**0.6235**) and `Footfall_Index` (**0.2043**). `Social_Media_Sentiment` follows at **0.0482**, while all remaining variables contribute much less. This indicates that the demand signal is concentrated in a few commercially meaningful drivers rather than being evenly spread across the full feature set.
 
-![Figure 5. Permutation importance on the hold-out set.](assets/eda_permutation_importance.png){ width=90% }
+![Figure 5. Permutation importance on the hold-out set.](./assets/eda_permutation_importance.png){ width=90% }
 
 Permutation importance confirms the same conclusion. `Current_Price` remains the dominant feature with an importance decrease of roughly **1.027**, followed by `Footfall_Index` (**0.395**) and `Social_Media_Sentiment` (**0.061**). The consistency between the two importance methods is important. It shows that the signal is not an artifact of one model family. For the report, this supports a strong business interpretation: pricing discipline, store traffic, and customer perception are the primary drivers of retail demand in this dataset.
 
@@ -147,7 +147,7 @@ Permutation importance confirms the same conclusion. `Current_Price` remains the
 
 Principal Component Analysis was used not as a production requirement, but as an exploratory device to understand whether broad latent factors existed across the numeric feature block.
 
-![Figure 6. Cumulative explained variance from PCA.](assets/eda_pca_cumulative.png){ width=85% }
+![Figure 6. Cumulative explained variance from PCA.](./assets/eda_pca_cumulative.png){ width=85% }
 
 The first principal component explains about **26.61%** of the variance. The first five components together explain approximately **65.35%** of the total variance. This implies that the dataset does contain shared latent structure across pricing, traffic, and operational variables, but not so strongly that a tiny component set can replace the original features without information loss. In practical terms, PCA was useful for exploration and dimensionality studies, but not necessary for the final deployed models.
 
@@ -155,11 +155,11 @@ The first principal component explains about **26.61%** of the variance. The fir
 
 Although the deployed app is not a classical time-series forecaster, temporal analysis remains useful because retail demand is often shaped by weekdays, weekends, and month-level seasonality.
 
-![Figure 7. Average demand by day of week.](assets/eda_demand_by_day.png){ width=85% }
+![Figure 7. Average demand by day of week.](./assets/eda_demand_by_day.png){ width=85% }
 
 Demand is slightly lower mid-week and rises during the weekend. The lowest observed day-level average is around **109.30 units** on Wednesday, while demand peaks at roughly **115.61** on Saturday and **116.49** on Sunday. The pattern is not extreme, but it is meaningful enough to justify retaining weekday and weekend flags in exploratory modeling and feature engineering.
 
-![Figure 8. Average demand by month.](assets/eda_demand_by_month.png){ width=90% }
+![Figure 8. Average demand by month.](./assets/eda_demand_by_month.png){ width=90% }
 
 Monthly variation is present but moderate. The highest monthly average appears in **July (116.38 units)**, followed by **November (114.28 units)**, while the lower months include **December (110.13 units)** and **February (110.60 units)**. This suggests that demand seasonality exists, but it is not the sole driver of the outcome. It acts more as contextual variation than as a dominant pattern.
 
@@ -167,11 +167,11 @@ Monthly variation is present but moderate. The highest monthly average appears i
 
 Category and store-level plots were used to understand whether the dataset exhibits strong structural differences across product classes or retail formats.
 
-![Figure 9. Average demand by category.](assets/eda_demand_by_category.png){ width=90% }
+![Figure 9. Average demand by category.](./assets/eda_demand_by_category.png){ width=90% }
 
 The category-level averages are relatively close, but still informative. `Grocery` has the highest average demand at **113.40 units**, followed closely by `Clothing` (**113.26**) and `Beauty` (**112.24**). `Electronics` is lowest at **110.69**. The small spread indicates that demand alone does not sharply separate categories. This helps explain why a separate stocking-priority target is valuable: a category may have respectable demand but still be disadvantaged by shelf-life or supply constraints.
 
-![Figure 10. Average demand by store type.](assets/eda_demand_by_store_type.png){ width=75% }
+![Figure 10. Average demand by store type.](./assets/eda_demand_by_store_type.png){ width=75% }
 
 Urban stores show a marginally higher average demand (**112.46 units**) than rural stores (**111.96 units**). The difference is modest, which suggests that store type is useful context rather than a decisive determinant. This finding is consistent with the eventual modeling choice: store-type context is retained, but it is not treated as a dominant standalone predictor.
 
@@ -387,13 +387,13 @@ The precomputed operational classification results compare a numeric-only logist
 | Hybrid Logistic Regression (C=1.5) | 0.8050 | 0.8051 | 0.8052 |
 | Hybrid Logistic Regression (C=2.0) | 0.7975 | 0.7977 | 0.7978 |
 
-![Figure 11. Operational classification experiment comparison.](assets/models_classification_weighted_f1.png){ width=92% }
+![Figure 11. Operational classification experiment comparison.](./assets/models_classification_weighted_f1.png){ width=92% }
 
 The most important observation here is nuanced. In this particular operational sweep, the **numeric-only baseline slightly outperforms the hybrid sweep**. This implies that the engineered stocking-priority label is already heavily explained by structured business variables such as fill rate, shelf life, pricing, and supplier behavior. That is a reasonable result because the label itself was constructed from business quantities derived from those variables.
 
 However, it would be incorrect to conclude from this one table that text is useless. The hybrid model remains valuable for deployment because product semantics, category context, brand cues, and promotion language are useful for live business scenarios and for the broader Week 4 comparison discussed later.
 
-![Figure 12. Confusion matrix for the hybrid logistic classification experiment.](assets/models_classification_confusion_matrix.png){ width=68% }
+![Figure 12. Confusion matrix for the hybrid logistic classification experiment.](./assets/models_classification_confusion_matrix.png){ width=68% }
 
 The confusion matrix shows that the **Medium** class is the most difficult to identify cleanly. Low and High are classified more confidently, while Medium is often confused with its neighboring classes. This is expected in a three-level merchandising problem because Medium typically represents the boundary zone where attractive and risky signals coexist.
 
@@ -408,7 +408,7 @@ The deployed sales model family was evaluated using a Ridge alpha sweep.
 | Ridge alpha=1.0 | 9.7058 | 12.1194 | 0.8130 |
 | Ridge alpha=0.5 | 9.7626 | 12.2001 | 0.8105 |
 
-![Figure 13. Sales regression experiment comparison.](assets/models_regression_rmse.png){ width=82% }
+![Figure 13. Sales regression experiment comparison.](./assets/models_regression_rmse.png){ width=82% }
 
 These results are realistic and credible. RMSE stays in a narrow band of about **11.9 to 12.2 units**, while R² remains between **0.81 and 0.82**. This tells us three things. First, the sales task is learnable with a classical linear model. Second, the feature block captures meaningful commercial signal without relying on leakage. Third, more complex demand models are not strictly necessary for a stable deployed demo.
 
@@ -426,7 +426,7 @@ The broader Week 4 benchmark compares the major classification families explored
 | Logistic Regression (text-only) | 0.4400 | 0.4314 | Live compare |
 | Hugging Face Transformer Model | 0.4267 | 0.3666 | Benchmark-only |
 
-![Figure 14. Week 4 model-lab comparison.](assets/models_model_lab_comparison.png){ width=95% }
+![Figure 14. Week 4 model-lab comparison.](./assets/models_model_lab_comparison.png){ width=95% }
 
 This benchmark is important because it answers a different research question from the operational sweep. In this broader comparison, the **hybrid logistic model performs best overall**, outperforming both the numeric-only and text-only logistic baselines and dramatically outperforming the text-only transformer benchmark. The deep learning model improves over text-only baselines, but it still falls well below the hybrid logistic model while being far more expensive to operationalize.
 
@@ -503,7 +503,7 @@ The final value of the project is not only that it produces predictive scores, b
 
 ## 9.1 Category-level stocking-priority patterns
 
-![Figure 15. Share of high-priority records by category.](assets/business_high_priority_share_by_category.png){ width=90% }
+![Figure 15. Share of high-priority records by category.](./assets/business_high_priority_share_by_category.png){ width=90% }
 
 The strongest category-level result is the dominance of **Home**, where approximately **75.45%** of records fall into the High-priority class. In contrast, **Grocery** has only **7.24%** High-priority records. This difference cannot be explained by demand alone, because grocery also has the highest average units sold. The deeper explanation lies in operational context: Home products have very long average shelf life (**2,222 days**) and low spoilage risk, while Grocery has an average shelf life of only **42.65 days**.
 
