@@ -376,9 +376,8 @@ Although the project is now much stronger than the earlier single-model version,
 
 1. The stocking-priority label is still an engineered target rather than a directly observed business label.
 2. The custom deep learning and Hugging Face models are benchmark-only in the current runtime.
-3. The dashboard is API-tested but does not yet include a dedicated browser-level end-to-end test.
-4. Some experiment views are generated for different presentation purposes, so future work should unify them under one benchmark protocol for complete comparability.
-5. The project currently favors explainability and stability over the most complex possible modeling approach.
+3. Some experiment views are generated for different presentation purposes, so future work should unify them under one benchmark protocol for complete comparability.
+4. The project currently favors explainability and stability over the most complex possible modeling approach.
 
 ### 14. Future Work
 
