@@ -1,4 +1,4 @@
 # Development and testing dependencies (not needed in production)
 -r requirements.txt
-pytest>=8.0
-httpx>=0.27          # Required by FastAPI's TestClient
+pytest
+httpx          # Required by FastAPI's TestClient
