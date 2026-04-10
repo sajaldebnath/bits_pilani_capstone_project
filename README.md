@@ -418,9 +418,5 @@ This makes the project more realistic for retail coordination and academic demon
 ## Demo Screenshots
 This section has screenshots from the application demo.
 
-### Main Application Demo
+![Application Demo](./assets/Demo.gif) 
 
-![Application Demo](./artifacts/Demo-1.gif) 
-
-### Swagger UI and Redoc UI Demo
-![Swagger/Redoc UI Demo](./artifacts/Demo-2.gif)
