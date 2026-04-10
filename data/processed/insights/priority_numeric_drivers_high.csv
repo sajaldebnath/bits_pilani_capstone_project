@@ -1,0 +1,7 @@
+feature,raw_feature,coefficient,interpretation
+Fill Rate Pct,num__Fill_Rate_Pct,3.4453,Higher fill rate means the supplier is more dependable at replenishment. In this model view it increases the signal for High stocking priority.
+Shelf Life Days,num__Shelf_Life_Days,3.246,Long shelf life reduces spoilage pressure and supports stocking confidence. In this model view it increases the signal for High stocking priority.
+Current Price,num__Current_Price,1.1707,Price shifts both perceived value and demand sensitivity. In this model view it increases the signal for High stocking priority.
+Website Visits,num__Website_Visits,0.0811,Website traffic helps represent broader customer attention. In this model view it increases the signal for High stocking priority.
+Lead Time Days,num__Lead_Time_Days,0.0672,Longer lead times make replenishment harder and usually lower confidence. In this model view it increases the signal for High stocking priority.
+Rainfall mm,num__Rainfall_mm,0.0661,Weather can shift store traffic and short-term consumption patterns. In this model view it increases the signal for High stocking priority.

@@ -1,0 +1,6 @@
+model_name,variant,hyperparameters,status,accuracy,precision_macro,recall_macro,f1_macro,weighted_f1
+Logistic Regression,numeric-only baseline,"{'C': 1.0, 'features': 'numeric'}",benchmarked,0.82,0.8214,0.82,0.8203,0.8204
+Hybrid Logistic Regression,C=0.5,"{'C': 0.5, 'features': 'text + numeric'}",benchmarked,0.815,0.8168,0.815,0.8154,0.8155
+Hybrid Logistic Regression,C=1.0,"{'C': 1.0, 'features': 'text + numeric'}",benchmarked,0.81,0.8108,0.81,0.8097,0.8098
+Hybrid Logistic Regression,C=1.5,"{'C': 1.5, 'features': 'text + numeric'}",benchmarked,0.805,0.8065,0.805,0.8051,0.8052
+Hybrid Logistic Regression,C=2.0,"{'C': 2.0, 'features': 'text + numeric'}",benchmarked,0.7975,0.7993,0.7975,0.7977,0.7978

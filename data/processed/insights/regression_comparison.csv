@@ -1,0 +1,5 @@
+model_name,variant,hyperparameters,status,mae,rmse,r2
+Sales Regression Model,Ridge alpha=5.0,"{'alpha': 5.0, 'target_transform': 'log1p'}",benchmarked,9.5546,11.9143,0.8193
+Sales Regression Model,Ridge alpha=2.0,"{'alpha': 2.0, 'target_transform': 'log1p'}",benchmarked,9.647,12.0334,0.8157
+Sales Regression Model,Ridge alpha=1.0,"{'alpha': 1.0, 'target_transform': 'log1p'}",benchmarked,9.7055,12.1191,0.813
+Sales Regression Model,Ridge alpha=0.5,"{'alpha': 0.5, 'target_transform': 'log1p'}",benchmarked,9.7627,12.2001,0.8105

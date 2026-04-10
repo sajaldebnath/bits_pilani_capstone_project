@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retail Intelligence Demo</title>
+  <link rel="stylesheet" href="/static/retail_dashboard.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">BITS Pilani Final Project</p>
+        <h1>Retail Intelligence Control Room</h1>
+        <p class="hero-copy">
+          Demo the system as a business-friendly retail assistant. Move across priority, sales,
+          recommendations, historical evidence, and scenario planning without leaving one page.
+        </p>
+      </div>
+      <div class="hero-card">
+        <div class="metric">
+          <span class="metric-label">Models</span>
+          <strong>2 deployed models + 5-model lab</strong>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Business lens</span>
+          <strong>Sales, profit, shelf space, risk</strong>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Best for</span>
+          <strong>Coordinator walkthroughs</strong>
+        </div>
+      </div>
+    </header>
+
+    <nav class="tab-row" aria-label="Retail intelligence sections">
+      <button class="tab-button is-active" data-tab-target="priority-tab">Stocking Priority</button>
+      <button class="tab-button" data-tab-target="sales-tab">Sales Prediction</button>
+      <button class="tab-button" data-tab-target="recommend-tab">Recommendation Engine</button>
+      <button class="tab-button" data-tab-target="historical-tab">Historical Query</button>
+      <button class="tab-button" data-tab-target="scenario-tab">Scenario Simulator</button>
+      <button class="tab-button" data-tab-target="insights-tab">Model Insights</button>
+      <button class="tab-button" data-tab-target="model-lab-tab">Model Lab</button>
+    </nav>
+
+    <main class="tab-panels">
+      <section id="priority-tab" class="tab-panel is-active">
+        <div class="section-header">
+          <div>
+            <h2>Stocking Priority Prediction</h2>
+            <p>Classify a product as Low, Medium, or High priority using the existing hybrid logistic regression model.</p>
+          </div>
+          <div class="button-row">
+            <button class="secondary" data-load-sample="priority-form:priority_high">High / Flags Off</button>
+            <button class="secondary" data-load-sample="priority-form:priority_medium">Medium / Flag On</button>
+            <button class="secondary" data-load-sample="priority-form:priority_low">Low / Flags On</button>
+          </div>
+        </div>
+        <div class="workspace-grid">
+          <div class="panel">
+            <form id="priority-form" class="product-form"></form>
+            <div class="button-row">
+              <button id="priority-submit">Predict Stocking Priority</button>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div id="priority-result" class="result-slot">
+              <div class="empty-state">Run a prediction to see class confidence, recommendation tone, and caution flags.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sales-tab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <h2>Sales Prediction</h2>
+            <p>Estimate expected daily units sold and translate that into revenue, profit, and shelf-capacity context.</p>
+          </div>
+          <div class="button-row">
+            <button class="secondary" data-load-sample="sales-form:electronics">Electronics Demo</button>
+            <button class="secondary" data-load-sample="sales-form:grocery">Grocery Demo</button>
+            <button class="secondary" data-load-sample="sales-form:home">Home Demo</button>
+          </div>
+        </div>
+        <div class="workspace-grid">
+          <div class="panel">
+            <form id="sales-form" class="product-form"></form>
+            <div class="button-row">
+              <button id="sales-submit">Predict Daily Sales</button>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div id="sales-result" class="result-slot">
+              <div class="empty-state">Predicted daily units sold, revenue, profit, and utilization will appear here.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="recommend-tab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <h2>Recommendation Engine</h2>
+            <p>Rank candidate products by sales, profit, profit density, or perishability risk to support shelf decisions.</p>
+          </div>
+          <div class="button-row">
+            <button class="secondary" id="load-portfolio-core">Core Portfolio Demo</button>
+            <button class="secondary" id="load-portfolio-risk">Risk Contrast Demo</button>
+          </div>
+        </div>
+        <div class="workspace-grid">
+          <div class="panel">
+            <div class="row row-2">
+              <div>
+                <label for="recommend-goal">Optimization Goal</label>
+                <select id="recommend-goal">
+                  <option value="maximize_profit">Maximize Profit</option>
+                  <option value="maximize_sales">Maximize Sales</option>
+                  <option value="maximize_profit_density">Maximize Profit Density</option>
+                  <option value="minimize_perishability_risk">Minimize Perishability Risk</option>
+                </select>
+              </div>
+              <div>
+                <label for="recommend-top-n">Top N Recommendations</label>
+                <input id="recommend-top-n" type="number" min="1" max="10" value="5" />
+              </div>
+            </div>
+            <div class="candidate-table-wrap">
+              <table class="data-table compact" id="candidate-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Tier</th>
+                    <th>Promo</th>
+                    <th>Price</th>
+                    <th>Shelf</th>
+                    <th>Lead</th>
+                    <th>Marketing</th>
+                    <th>Shelf Life</th>
+                    <th>Fill %</th>
+                    <th>Delay</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="button-row">
+              <button id="recommend-submit">Generate Ranked Recommendations</button>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div id="recommend-result" class="result-slot">
+              <div class="empty-state">Ranked products will appear here with recommendation scores and risk flags.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="historical-tab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <h2>Historical Query</h2>
+            <p>Filter the historical dataset and compare which products or categories look strongest under chosen business conditions.</p>
+          </div>
+          <div class="button-row">
+            <button class="secondary" id="load-history-grocery">Grocery Risk Query</button>
+            <button class="secondary" id="load-history-premium">Premium Profit Query</button>
+          </div>
+        </div>
+        <div class="workspace-grid">
+          <div class="panel">
+            <form id="historical-form">
+              <div class="row row-2">
+                <div>
+                  <label for="history-category">Category</label>
+                  <select id="history-category">
+                    <option value="">Any</option>
+                    <option>Beauty</option>
+                    <option>Clothing</option>
+                    <option>Electronics</option>
+                    <option>Grocery</option>
+                    <option>Home</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="history-brand-tier">Brand Tier</label>
+                  <select id="history-brand-tier">
+                    <option value="">Any</option>
+                    <option>Budget</option>
+                    <option>Mid</option>
+                    <option>Premium</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row row-2">
+                <div>
+                  <label for="history-promo">Promotion Type</label>
+                  <select id="history-promo">
+                    <option value="">Any</option>
+                    <option>BOGO</option>
+                    <option>Flash Sale</option>
+                    <option>Loyalty Only</option>
+                    <option>Seasonal Discount</option>
+                    <option>Unknown</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="history-store-type">Store Type</label>
+                  <select id="history-store-type">
+                    <option value="">Any</option>
+                    <option>Urban</option>
+                    <option>Rural</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row row-2">
+                <div>
+                  <label for="history-price-min">Minimum Price</label>
+                  <input id="history-price-min" type="number" min="0" step="0.01" value="" />
+                </div>
+                <div>
+                  <label for="history-price-max">Maximum Price</label>
+                  <input id="history-price-max" type="number" min="0" step="0.01" value="" />
+                </div>
+              </div>
+              <div class="row row-2">
+                <div>
+                  <label for="history-shelf-life-min">Minimum Shelf Life</label>
+                  <input id="history-shelf-life-min" type="number" min="0" step="1" value="" />
+                </div>
+                <div>
+                  <label for="history-shelf-life-max">Maximum Shelf Life</label>
+                  <input id="history-shelf-life-max" type="number" min="0" step="1" value="" />
+                </div>
+              </div>
+              <div class="row row-2">
+                <div>
+                  <label for="history-sort-by">Top Product Sort</label>
+                  <select id="history-sort-by">
+                    <option value="avg_profit_density">Profit Density</option>
+                    <option value="avg_gross_profit">Gross Profit</option>
+                    <option value="avg_daily_units_sold">Units Sold</option>
+                    <option value="high_priority_share">High Priority Share</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="history-top-n">Top N Products</label>
+                  <input id="history-top-n" type="number" min="3" max="15" step="1" value="8" />
+                </div>
+              </div>
+            </form>
+            <div class="button-row">
+              <button id="historical-submit">Run Historical Query</button>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div id="historical-result" class="result-slot">
+              <div class="empty-state">Filtered historical summaries and category comparisons will appear here.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scenario-tab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <h2>Scenario Simulator</h2>
+            <p>Compare one product under multiple business conditions such as promotion, marketing spend, or shelf-life assumptions.</p>
+          </div>
+          <div class="button-row">
+            <button class="secondary" data-load-sample="scenario-form:beauty">Flash Sale Demo</button>
+            <button class="secondary" id="load-scenario-marketing">Marketing Shift Demo</button>
+            <button class="secondary" id="load-scenario-shelf-life">Shelf-Life Demo</button>
+          </div>
+        </div>
+        <div class="workspace-grid">
+          <div class="panel">
+            <form id="scenario-form" class="product-form"></form>
+            <div class="mini-heading">Scenario Set</div>
+            <div class="candidate-table-wrap">
+              <table class="data-table compact" id="scenario-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Promotion</th>
+                    <th>Marketing</th>
+                    <th>Shelf Life</th>
+                    <th>Fill %</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="button-row">
+              <button id="scenario-submit">Compare Scenarios</button>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div id="scenario-result" class="result-slot">
+              <div class="empty-state">Baseline and side-by-side scenario outputs will appear here.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="insights-tab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <h2>Model Insights</h2>
+            <p>Explain the dataset, feature engineering, models, experiments, and business findings in a coordinator-friendly AI/ML walkthrough.</p>
+          </div>
+          <div class="button-row">
+            <div>
+              <label for="insights-experiment-group">Experiment View</label>
+              <select id="insights-experiment-group">
+                <option value="classification">Classification Experiments</option>
+                <option value="regression">Regression Experiments</option>
+              </select>
+            </div>
+            <div>
+              <label>&nbsp;</label>
+              <button class="secondary" id="insights-refresh">Refresh Insights</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel result-panel insights-panel">
+          <div id="insights-result" class="result-slot">
+            <div class="empty-state">Open this tab to load the precomputed model, experiment, and business insight summaries.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="model-lab-tab" class="tab-panel">
+        <div class="section-header">
+          <div>
+            <h2>Model Lab</h2>
+            <p>Show the broader Week 4 model exploration, compare benchmark performance, and run one scenario across the practical models side by side.</p>
+          </div>
+          <div class="button-row">
+            <button class="secondary" data-load-sample="model-lab-form:electronics">Electronics Compare</button>
+            <button class="secondary" data-load-sample="model-lab-form:grocery">Grocery Compare</button>
+            <button class="secondary" data-load-sample="model-lab-form:beauty">Beauty Compare</button>
+            <button class="secondary" id="model-lab-refresh">Refresh Model Lab</button>
+          </div>
+        </div>
+        <div class="workspace-grid">
+          <div class="panel">
+            <div class="notice">
+              <strong>Compare one business scenario across the explored models.</strong><br />
+              The three logistic variants run live. The custom deep learning and Hugging Face models are shown from saved Week 4 benchmark results unless a runtime artifact is attached later.
+            </div>
+            <form id="model-lab-form" class="product-form"></form>
+            <div class="button-row">
+              <button id="model-lab-submit">Compare Models on This Scenario</button>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div id="model-lab-result" class="result-slot">
+              <div class="empty-state">Run a model comparison to see side-by-side predictions, benchmark metrics, and availability status.</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel result-panel insights-panel stacked-panel">
+          <div id="model-lab-insights" class="result-slot">
+            <div class="empty-state">Open this tab to load the Week 4 benchmark story, deployed-model rationale, and model-family comparison.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/retail_dashboard.js"></script>
+</body>
+</html>

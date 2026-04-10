@@ -1,0 +1,212 @@
+{
+  "generated_at": "2026-04-08T06:18:27+00:00",
+  "dataset_overview": {
+    "rows": 2000,
+    "columns": 64,
+    "targets_used": [
+      {
+        "name": "Stocking_Priority_Class",
+        "type": "classification",
+        "description": "Engineered business priority class used by the stocking-priority classifier."
+      },
+      {
+        "name": "Daily_Units_Sold",
+        "type": "regression",
+        "description": "Observed daily demand used by the sales prediction model."
+      }
+    ],
+    "summary_cards": [
+      {
+        "label": "Rows",
+        "value": 2000,
+        "note": "Retail observations used for experiments."
+      },
+      {
+        "label": "Columns",
+        "value": 64,
+        "note": "Available product, store, demand, and supply features."
+      },
+      {
+        "label": "Deployed Models",
+        "value": 2,
+        "note": "Hybrid priority classifier and sales regressor."
+      },
+      {
+        "label": "Experiment Families",
+        "value": 2,
+        "note": "Classification and regression comparisons."
+      }
+    ],
+    "class_distribution": [
+      {
+        "label": "Low",
+        "count": 667,
+        "percentage": 33.35
+      },
+      {
+        "label": "Medium",
+        "count": 666,
+        "percentage": 33.3
+      },
+      {
+        "label": "High",
+        "count": 667,
+        "percentage": 33.35
+      }
+    ],
+    "feature_groups": [
+      {
+        "name": "Product and category metadata",
+        "count": 8,
+        "description": "Category, sub-category, product, brand, brand tier, festival, and store descriptors."
+      },
+      {
+        "name": "Pricing and promotion",
+        "count": 8,
+        "description": "Current price, base price, discount, competitor price, promotion type, and marketing support."
+      },
+      {
+        "name": "Shelf and supply-chain signals",
+        "count": 8,
+        "description": "Shelf capacity, shelf life, lead time, fill rate, delay, stock on hand, and safety stock context."
+      },
+      {
+        "name": "Demand and engagement signals",
+        "count": 12,
+        "description": "Daily units sold, digital traffic, loyalty behavior, basket size, and trend proxies."
+      }
+    ]
+  },
+  "feature_engineering": {
+    "text_template_design": {
+      "template": "Category: ... | Product: ... | SubCategory: ... | Brand: ... | BrandTier: ... | Promotion: ... | Festival: ... | StoreType: ...",
+      "why_it_exists": "The template lets a linear model pick up product semantics and business context without a heavy transformer dependency."
+    },
+    "numeric_features_used": [
+      "Current_Price",
+      "Shelf_Capacity",
+      "Lead_Time_Days",
+      "Marketing_Spend",
+      "Shelf_Life_Days",
+      "Fill_Rate_Pct",
+      "Supplier_Delay_Days",
+      "Discount_Percentage",
+      "Competitor_Price",
+      "Footfall_Index",
+      "Avg_Temperature",
+      "Rainfall_mm",
+      "Google_Trends_Current_Wk",
+      "Google_Trends_Lag_1w",
+      "App_Traffic_Index",
+      "Website_Visits",
+      "Loyalty_Program_Usage_Count",
+      "Repeat_Purchase_Rate",
+      "Avg_Basket_Size"
+    ],
+    "engineered_features_created": [
+      {
+        "name": "Unit_Margin",
+        "formula": "Current_Price - Unit_Cost",
+        "purpose": "Captures item-level unit profitability."
+      },
+      {
+        "name": "Gross_Profit",
+        "formula": "Unit_Margin * Daily_Units_Sold",
+        "purpose": "Captures raw commercial contribution."
+      },
+      {
+        "name": "Profit_Density",
+        "formula": "Gross_Profit / Shelf_Capacity",
+        "purpose": "Captures profit return per shelf unit."
+      },
+      {
+        "name": "Stocking_Priority_Score",
+        "formula": "Weighted score using profit density, shelf life, fill rate, supplier delay, and backorder risk.",
+        "purpose": "Creates the priority target used for classification experiments."
+      }
+    ],
+    "leakage_checks": [
+      "The classification model does not use Daily_Units_Sold, Gross_Profit, Profit_Density, Unit_Margin, or Stocking_Priority_Score as input features.",
+      "The sales model predicts Daily_Units_Sold without using post-outcome columns such as Online_Sales_Units or In_Store_Sales_Units.",
+      "Recommendation outputs are computed after prediction, not fed back into model inference."
+    ],
+    "excluded_features": [
+      "Daily_Units_Sold",
+      "Online_Sales_Units",
+      "In_Store_Sales_Units",
+      "Unit_Cost",
+      "Unit_Margin",
+      "Gross_Profit",
+      "Profit_Density",
+      "Stocking_Priority_Score",
+      "Stocking_Priority_Class"
+    ]
+  },
+  "models_used": [
+    {
+      "model_name": "Logistic Regression",
+      "status": "Benchmarked baseline",
+      "purpose": "Structured-data baseline for stocking-priority classification.",
+      "inputs": "Numeric retail and supply-chain features only.",
+      "outputs": "Low / Medium / High stocking priority.",
+      "strengths": "Fast, interpretable, easy to explain in an academic demo.",
+      "limitations": "Misses product semantics captured by the text template."
+    },
+    {
+      "model_name": "Hybrid Logistic Regression",
+      "status": "Deployed in app",
+      "purpose": "Primary stocking-priority classifier used by `/predict`.",
+      "inputs": "Column-aware text template plus numeric retail features.",
+      "outputs": "Low / Medium / High priority with class probabilities.",
+      "strengths": "Balances interpretability with better semantic coverage.",
+      "limitations": "Linear decision boundary; still depends on engineered target design."
+    },
+    {
+      "model_name": "Sales Regression Model",
+      "status": "Deployed in app",
+      "purpose": "Predicts daily units sold for `/predict/sales` and downstream recommendations.",
+      "inputs": "Same text template plus numeric business features.",
+      "outputs": "Predicted `Daily_Units_Sold`, revenue, and profit context.",
+      "strengths": "Stable, explainable, lightweight for demos.",
+      "limitations": "Designed as a robust baseline rather than a complex temporal forecaster."
+    },
+    {
+      "model_name": "Custom Deep Learning Model",
+      "status": "Research candidate",
+      "purpose": "Future non-linear benchmark for richer interaction learning.",
+      "inputs": "Structured features and learned text embeddings.",
+      "outputs": "Potentially better complex pattern capture.",
+      "strengths": "Could model non-linear effects across promotion, demand, and risk signals.",
+      "limitations": "Not packaged into this offline demo build; would need formal tuning and stronger controls."
+    },
+    {
+      "model_name": "Hugging Face / Pre-trained Text Classifier",
+      "status": "Research candidate",
+      "purpose": "Text-only semantic baseline for product descriptions and business context.",
+      "inputs": "Text template only.",
+      "outputs": "Text-driven class probabilities or semantic labels.",
+      "strengths": "Strong transfer learning potential on language-heavy tasks.",
+      "limitations": "Text-only view misses numeric operational constraints and is not bundled for offline demo use."
+    }
+  ],
+  "tuning_summary": {
+    "formal_tuning_status": "A limited offline experiment sweep was run to compare baseline and tuned variants. The demo UI itself does not retrain models live.",
+    "classification": {
+      "baseline_model": "Logistic Regression (numeric-only)",
+      "baseline_weighted_f1": 0.8204,
+      "selected_demo_model": "Hybrid Logistic Regression",
+      "selected_variant": "C=1.0",
+      "best_experiment": "C=0.5",
+      "best_weighted_f1": 0.8155,
+      "note": "Hybrid text + numeric modeling clearly outperformed the numeric-only baseline. A small C sweep was tried offline to validate stability."
+    },
+    "regression": {
+      "selected_demo_model": "Sales Regression Model",
+      "selected_variant": "Ridge alpha=1.0",
+      "deployed_rmse": 12.1191,
+      "best_experiment": "Ridge alpha=5.0",
+      "best_rmse": 11.9143,
+      "note": "A small Ridge alpha sweep was tried offline. The UI only compares precomputed results."
+    }
+  }
+}

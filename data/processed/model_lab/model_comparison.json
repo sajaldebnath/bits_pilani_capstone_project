@@ -1,0 +1,387 @@
+{
+  "generated_at": "2026-04-08T07:37:21+00:00",
+  "source_notebooks": [
+    {
+      "label": "Week 4 model comparison notebook",
+      "path": "/Users/sajaldebnath/Library/CloudStorage/OneDrive-Personal/1. AI-ML STUDY/1. BITS Pilani Course/0. Final Project Work/Project Files/BITS_Project_Fourth_Week_Tasks_Sajal.ipynb"
+    }
+  ],
+  "models": [
+    {
+      "model_name": "Logistic Regression (hybrid)",
+      "status": "Deployed and live compare",
+      "compare_mode": "live",
+      "purpose": "Combine retail text context with structured signals to classify stocking priority in a practical, explainable way.",
+      "inputs": "Column-aware text template plus numeric retail and supply-chain features.",
+      "outputs": "Predicted stocking-priority class with class probabilities.",
+      "strengths": "Best class-balanced benchmark, interpretable, stable in FastAPI, and easy to maintain.",
+      "limitations": "Still linear, so it may miss nonlinear patterns that a deeper architecture can capture.",
+      "deployment_relevance": "Chosen for deployment because it balances performance, interpretability, and operational stability.",
+      "model_key": "logreg_hybrid",
+      "benchmark_source": "Recomputed from the Week 4 notebook design on the local dataset."
+    },
+    {
+      "model_name": "Logistic Regression (numeric-only)",
+      "status": "Live compare available",
+      "compare_mode": "live",
+      "purpose": "Benchmark how much the structured operational and pricing variables can explain priority without text context.",
+      "inputs": "Structured numeric retail, pricing, and operations features only.",
+      "outputs": "Predicted stocking-priority class with class probabilities.",
+      "strengths": "Business-readable and highlights the value of numeric demand and supply signals.",
+      "limitations": "Cannot learn semantic differences between brands, sub-categories, or promotions from text.",
+      "deployment_relevance": "Strong baseline for structured operations, but weaker than the hybrid approach.",
+      "model_key": "logreg_numeric_only",
+      "benchmark_source": "Recomputed from the Week 4 notebook design on the local dataset."
+    },
+    {
+      "model_name": "Custom Deep Learning Model",
+      "status": "Benchmark only",
+      "compare_mode": "benchmark_only",
+      "purpose": "Test whether a custom hybrid neural architecture can capture richer nonlinear interactions between text and numeric features.",
+      "inputs": "Column-aware text template and the numeric feature block.",
+      "outputs": "Predicted stocking-priority class probabilities.",
+      "strengths": "Can capture nonlinear interactions and came close to the best weighted F1 while posting the highest accuracy.",
+      "limitations": "Needs TensorFlow/Keras runtime support, more tuning, and more careful production hardening.",
+      "deployment_relevance": "Excellent research model, but heavier and less transparent than the chosen deployed model.",
+      "model_key": "custom_dl_hybrid",
+      "benchmark_source": "Week 4 notebook output: BITS_Project_Fourth_Week_Tasks_Sajal.ipynb"
+    },
+    {
+      "model_name": "Logistic Regression (text-only)",
+      "status": "Live compare available",
+      "compare_mode": "live",
+      "purpose": "Benchmark how much category, product, brand, and promotion text alone can explain stocking priority.",
+      "inputs": "Column-aware retail text template only.",
+      "outputs": "Predicted stocking-priority class with class probabilities.",
+      "strengths": "Fast, simple, interpretable baseline for semantic retail context.",
+      "limitations": "Misses shelf life, fill rate, lead time, and other structured business signals.",
+      "deployment_relevance": "Useful as a semantic baseline, but not strong enough to deploy on its own.",
+      "model_key": "logreg_text_only",
+      "benchmark_source": "Recomputed from the Week 4 notebook design on the local dataset."
+    },
+    {
+      "model_name": "Hugging Face Transformer Model",
+      "status": "Benchmark only",
+      "compare_mode": "benchmark_only",
+      "purpose": "Evaluate a pre-trained transformer to see whether stronger language representations help on the business text template.",
+      "inputs": "Text template only, tokenized for DistilBERT.",
+      "outputs": "Predicted stocking-priority class probabilities.",
+      "strengths": "Strong modern NLP baseline with rich contextual text representations.",
+      "limitations": "Text-only setup underuses the structured retail signals, and runtime is heavier than classical ML.",
+      "deployment_relevance": "Useful for research comparison, but not the best fit for this label-driven retail dashboard.",
+      "model_key": "hf_distilbert_text_only",
+      "benchmark_source": "Week 4 notebook output: BITS_Project_Fourth_Week_Tasks_Sajal.ipynb"
+    }
+  ],
+  "performance_table": [
+    {
+      "model_key": "logreg_hybrid",
+      "model_name": "Logistic Regression (hybrid)",
+      "family": "Logistic Regression",
+      "representation": "hybrid",
+      "status": "live_compare",
+      "compare_mode": "live",
+      "benchmark_source": "Recomputed from the Week 4 notebook design on the local dataset.",
+      "accuracy": 0.7567,
+      "precision_macro": 0.756,
+      "recall_macro": 0.7567,
+      "macro_f1": 0.7563,
+      "weighted_f1": 0.7563
+    },
+    {
+      "model_key": "logreg_numeric_only",
+      "model_name": "Logistic Regression (numeric-only)",
+      "family": "Logistic Regression",
+      "representation": "numeric only",
+      "status": "live_compare",
+      "compare_mode": "live",
+      "benchmark_source": "Recomputed from the Week 4 notebook design on the local dataset.",
+      "accuracy": 0.7433,
+      "precision_macro": 0.7455,
+      "recall_macro": 0.7433,
+      "macro_f1": 0.7441,
+      "weighted_f1": 0.7441
+    },
+    {
+      "model_key": "custom_dl_hybrid",
+      "model_name": "Custom Deep Learning Model",
+      "family": "Custom Deep Learning",
+      "representation": "hybrid",
+      "status": "benchmark_only",
+      "compare_mode": "benchmark_only",
+      "benchmark_source": "Week 4 notebook output: BITS_Project_Fourth_Week_Tasks_Sajal.ipynb",
+      "accuracy": 0.4833,
+      "precision_macro": 0.47,
+      "recall_macro": 0.48,
+      "macro_f1": 0.4589,
+      "weighted_f1": 0.4589,
+      "notes": "Shown as a benchmark summary because no runtime artifact is currently attached to the app."
+    },
+    {
+      "model_key": "logreg_text_only",
+      "model_name": "Logistic Regression (text-only)",
+      "family": "Logistic Regression",
+      "representation": "text only",
+      "status": "live_compare",
+      "compare_mode": "live",
+      "benchmark_source": "Recomputed from the Week 4 notebook design on the local dataset.",
+      "accuracy": 0.44,
+      "precision_macro": 0.436,
+      "recall_macro": 0.44,
+      "macro_f1": 0.4314,
+      "weighted_f1": 0.4314
+    },
+    {
+      "model_key": "hf_distilbert_text_only",
+      "model_name": "Hugging Face Transformer Model",
+      "family": "Hugging Face Transformer",
+      "representation": "text only",
+      "status": "benchmark_only",
+      "compare_mode": "benchmark_only",
+      "benchmark_source": "Week 4 notebook output: BITS_Project_Fourth_Week_Tasks_Sajal.ipynb",
+      "accuracy": 0.4267,
+      "precision_macro": 0.36,
+      "recall_macro": 0.43,
+      "macro_f1": 0.3666,
+      "weighted_f1": 0.3666,
+      "notes": "Shown as a benchmark summary because no runtime artifact is currently attached to the app."
+    }
+  ],
+  "weighted_f1_chart": [
+    {
+      "label": "Logistic Regression (hybrid)",
+      "value": 0.7563,
+      "metric": "Weighted F1"
+    },
+    {
+      "label": "Logistic Regression (numeric-only)",
+      "value": 0.7441,
+      "metric": "Weighted F1"
+    },
+    {
+      "label": "Custom Deep Learning Model",
+      "value": 0.4589,
+      "metric": "Weighted F1"
+    },
+    {
+      "label": "Logistic Regression (text-only)",
+      "value": 0.4314,
+      "metric": "Weighted F1"
+    },
+    {
+      "label": "Hugging Face Transformer Model",
+      "value": 0.3666,
+      "metric": "Weighted F1"
+    }
+  ],
+  "accuracy_chart": [
+    {
+      "label": "Logistic Regression (hybrid)",
+      "value": 0.7567,
+      "metric": "Accuracy"
+    },
+    {
+      "label": "Logistic Regression (numeric-only)",
+      "value": 0.7433,
+      "metric": "Accuracy"
+    },
+    {
+      "label": "Custom Deep Learning Model",
+      "value": 0.4833,
+      "metric": "Accuracy"
+    },
+    {
+      "label": "Logistic Regression (text-only)",
+      "value": 0.44,
+      "metric": "Accuracy"
+    },
+    {
+      "label": "Hugging Face Transformer Model",
+      "value": 0.4267,
+      "metric": "Accuracy"
+    }
+  ],
+  "confusion_matrices": {
+    "logreg_text_only": {
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "matrix": [
+        [
+          56,
+          24,
+          20
+        ],
+        [
+          47,
+          26,
+          27
+        ],
+        [
+          30,
+          20,
+          50
+        ]
+      ]
+    },
+    "logreg_numeric_only": {
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "matrix": [
+        [
+          83,
+          17,
+          0
+        ],
+        [
+          20,
+          63,
+          17
+        ],
+        [
+          0,
+          23,
+          77
+        ]
+      ]
+    },
+    "logreg_hybrid": {
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "matrix": [
+        [
+          84,
+          16,
+          0
+        ],
+        [
+          18,
+          63,
+          19
+        ],
+        [
+          0,
+          20,
+          80
+        ]
+      ]
+    }
+  },
+  "selected_confusion_matrix_key": "logreg_hybrid",
+  "deployment_choice": {
+    "selected_model_key": "logreg_hybrid",
+    "selected_model_name": "Logistic Regression (hybrid)",
+    "headline": "Hybrid logistic regression was selected for deployment.",
+    "why_selected": [
+      "It delivered the best Weighted F1 in the Week 4 comparison, which matters most for balanced Low / Medium / High decision quality.",
+      "It combines text context with numeric business signals, so it respects both semantic category information and operational reality.",
+      "Its coefficients, confusion matrix, and feature drivers are straightforward to explain in an academic demo.",
+      "It is stable to run inside FastAPI without GPU dependencies or heavier model-serving infrastructure."
+    ],
+    "selection_matrix": [
+      {
+        "criterion": "Weighted F1",
+        "selected_model": 0.7563,
+        "custom_dl": 0.4589,
+        "hf_transformer": 0.3666,
+        "summary": "Hybrid logistic regression achieved the strongest class-balanced benchmark score."
+      },
+      {
+        "criterion": "Accuracy",
+        "selected_model": 0.7567,
+        "custom_dl": 0.4833,
+        "hf_transformer": 0.4267,
+        "summary": "The custom deep learning model reached slightly higher raw accuracy, but not higher weighted F1."
+      },
+      {
+        "criterion": "Interpretability",
+        "selected_model": "High",
+        "custom_dl": "Medium",
+        "hf_transformer": "Low",
+        "summary": "Linear coefficients and simple preprocessing make the deployed model much easier to explain."
+      },
+      {
+        "criterion": "Deployment ease",
+        "selected_model": "High",
+        "custom_dl": "Medium-Low",
+        "hf_transformer": "Low",
+        "summary": "The deployed model fits a lightweight FastAPI workflow with minimal runtime dependencies."
+      },
+      {
+        "criterion": "Operational stability",
+        "selected_model": "High",
+        "custom_dl": "Medium",
+        "hf_transformer": "Medium-Low",
+        "summary": "Classical ML is easier to monitor, reload, and recover in a near-term demo environment."
+      }
+    ],
+    "deployment_summary": "The hybrid logistic regression model was deployed because it offers the best overall balance of business-aligned performance, interpretability, stability, and demo readiness."
+  },
+  "compare_notes": [
+    "The live comparison endpoint currently serves the three logistic-regression variants.",
+    "Custom deep learning and Hugging Face transformer results are shown from the saved Week 4 notebook benchmarks because no runtime artifact is currently attached.",
+    "For live comparison, any context fields not collected in the app form are filled from dataset medians or modes so the scenario remains stable and reproducible."
+  ],
+  "runtime_defaults": {
+    "DayOfWeek": 3.0,
+    "Month": 7.0,
+    "Year": 2023.0,
+    "Is_Weekend": 0.0,
+    "Is_Holiday": 0.0,
+    "Base_Price": 242.5,
+    "Current_Price": 173.555,
+    "Discount_Percentage": 0.25,
+    "Competitor_Price": 242.07,
+    "Footfall_Index": 128.5,
+    "Avg_Temperature": 15.25,
+    "Rainfall_mm": 3.7,
+    "Lead_Time_Days": 8.0,
+    "Shelf_Capacity": 71.0,
+    "Safety_Stock_Level": 106.5,
+    "Stock_On_Hand": 259.5,
+    "No_of_Checkout_Counters": 8.0,
+    "Avg_Billing_Time_min": 4.6,
+    "Local_Population_Density": 6002.0,
+    "Product_Age_Days": 943.0,
+    "No_of_Customer_Purchases": 63.0,
+    "Promotional_Campaign_Flag": 1.0,
+    "Competitor_Promotion_Flag": 1.0,
+    "Google_Trends_Current_Wk": 52.0,
+    "Google_Trends_Lag_1w": 52.0,
+    "Marketing_Spend": 3135.0,
+    "Payday_Flag": 0.0,
+    "School_Vacation_Flag": 0.0,
+    "Local_Event_Flag": 0.0,
+    "Seasonal_Product_Flag": 0.0,
+    "App_Traffic_Index": 584.0,
+    "Website_Visits": 1272.0,
+    "Loyalty_Program_Usage_Count": 23.0,
+    "Repeat_Purchase_Rate": 0.25,
+    "Avg_Basket_Size": 1.67,
+    "Fill_Rate_Pct": 92.25,
+    "Shelf_Life_Days": 949.0,
+    "Supplier_Delay_Days": 2.0,
+    "Category": "Grocery",
+    "Product_Name": "Tata Spices 1007",
+    "Sub_Category": "Computers",
+    "Brand_Name": "FabIndia",
+    "Brand_Tier": "Premium",
+    "Store_Type": "Urban",
+    "Promotion_Type": "Unknown",
+    "Festival_Name": "Unknown",
+    "Festival_Type": "None"
+  },
+  "class_labels": [
+    "Low",
+    "Medium",
+    "High"
+  ]
+}

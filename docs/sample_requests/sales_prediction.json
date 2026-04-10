@@ -1,0 +1,20 @@
+{
+  "category": "Home",
+  "product_name": "Storage Box Set",
+  "brand_tier": "Mid",
+  "promotion_type": "Seasonal Discount",
+  "sub_category": "Organization",
+  "brand_name": "HomeEase",
+  "store_type": "Urban",
+  "festival_name": null,
+  "current_price": 40,
+  "competitor_price": 42,
+  "shelf_capacity": 45,
+  "lead_time_days": 4,
+  "marketing_spend": 1200,
+  "discount_percentage": 8,
+  "shelf_life_days": 1800,
+  "fill_rate_pct": 96,
+  "supplier_delay_days": 2,
+  "footfall_index": 92
+}

@@ -1,0 +1,52 @@
+{
+  "base_product": {
+    "category": "Beauty",
+    "product_name": "Lakme Lipstick",
+    "brand_tier": "Premium",
+    "promotion_type": "Unknown",
+    "sub_category": "Makeup",
+    "brand_name": "Lakme",
+    "store_type": "Urban",
+    "festival_name": null,
+    "current_price": 25,
+    "competitor_price": 24,
+    "shelf_capacity": 50,
+    "lead_time_days": 3,
+    "marketing_spend": 800,
+    "discount_percentage": 5,
+    "shelf_life_days": 365,
+    "fill_rate_pct": 95,
+    "supplier_delay_days": 1,
+    "footfall_index": 116
+  },
+  "scenarios": [
+    {
+      "scenario_name": "No Promotion",
+      "overrides": {
+        "promotion_type": "Unknown",
+        "marketing_spend": 800,
+        "shelf_life_days": 365,
+        "fill_rate_pct": 95
+      }
+    },
+    {
+      "scenario_name": "Flash Sale",
+      "overrides": {
+        "promotion_type": "Flash Sale",
+        "marketing_spend": 1800,
+        "shelf_life_days": 365,
+        "fill_rate_pct": 95
+      }
+    },
+    {
+      "scenario_name": "Festival Push",
+      "overrides": {
+        "promotion_type": "Festival",
+        "marketing_spend": 3200,
+        "shelf_life_days": 365,
+        "fill_rate_pct": 95,
+        "festival_name": "Diwali"
+      }
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "generated_at": "2026-04-08T06:18:27+00:00",
+  "classification": {
+    "best_model": "Hybrid Logistic Regression",
+    "best_variant": "C=0.5",
+    "comparison_table": [
+      {
+        "model_name": "Logistic Regression",
+        "variant": "numeric-only baseline",
+        "hyperparameters": {
+          "C": 1.0,
+          "features": "numeric"
+        },
+        "status": "benchmarked",
+        "accuracy": 0.82,
+        "precision_macro": 0.8214,
+        "recall_macro": 0.82,
+        "f1_macro": 0.8203,
+        "weighted_f1": 0.8204
+      },
+      {
+        "model_name": "Hybrid Logistic Regression",
+        "variant": "C=0.5",
+        "hyperparameters": {
+          "C": 0.5,
+          "features": "text + numeric"
+        },
+        "status": "benchmarked",
+        "accuracy": 0.815,
+        "precision_macro": 0.8168,
+        "recall_macro": 0.815,
+        "f1_macro": 0.8154,
+        "weighted_f1": 0.8155
+      },
+      {
+        "model_name": "Hybrid Logistic Regression",
+        "variant": "C=1.0",
+        "hyperparameters": {
+          "C": 1.0,
+          "features": "text + numeric"
+        },
+        "status": "benchmarked",
+        "accuracy": 0.81,
+        "precision_macro": 0.8108,
+        "recall_macro": 0.81,
+        "f1_macro": 0.8097,
+        "weighted_f1": 0.8098
+      },
+      {
+        "model_name": "Hybrid Logistic Regression",
+        "variant": "C=1.5",
+        "hyperparameters": {
+          "C": 1.5,
+          "features": "text + numeric"
+        },
+        "status": "benchmarked",
+        "accuracy": 0.805,
+        "precision_macro": 0.8065,
+        "recall_macro": 0.805,
+        "f1_macro": 0.8051,
+        "weighted_f1": 0.8052
+      },
+      {
+        "model_name": "Hybrid Logistic Regression",
+        "variant": "C=2.0",
+        "hyperparameters": {
+          "C": 2.0,
+          "features": "text + numeric"
+        },
+        "status": "benchmarked",
+        "accuracy": 0.7975,
+        "precision_macro": 0.7993,
+        "recall_macro": 0.7975,
+        "f1_macro": 0.7977,
+        "weighted_f1": 0.7978
+      }
+    ],
+    "comparison_chart": [
+      {
+        "label": "Logistic Regression (numeric-only baseline)",
+        "value": 0.8204,
+        "metric": "Weighted F1"
+      },
+      {
+        "label": "Hybrid Logistic Regression (C=0.5)",
+        "value": 0.8155,
+        "metric": "Weighted F1"
+      },
+      {
+        "label": "Hybrid Logistic Regression (C=1.0)",
+        "value": 0.8098,
+        "metric": "Weighted F1"
+      },
+      {
+        "label": "Hybrid Logistic Regression (C=1.5)",
+        "value": 0.8052,
+        "metric": "Weighted F1"
+      },
+      {
+        "label": "Hybrid Logistic Regression (C=2.0)",
+        "value": 0.7978,
+        "metric": "Weighted F1"
+      }
+    ],
+    "confusion_matrix": {
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "matrix": [
+        [
+          118,
+          15,
+          0
+        ],
+        [
+          20,
+          98,
+          15
+        ],
+        [
+          0,
+          24,
+          110
+        ]
+      ]
+    }
+  },
+  "regression": {
+    "best_model": "Sales Regression Model",
+    "best_variant": "Ridge alpha=5.0",
+    "comparison_table": [
+      {
+        "model_name": "Sales Regression Model",
+        "variant": "Ridge alpha=5.0",
+        "hyperparameters": {
+          "alpha": 5.0,
+          "target_transform": "log1p"
+        },
+        "status": "benchmarked",
+        "mae": 9.5546,
+        "rmse": 11.9143,
+        "r2": 0.8193
+      },
+      {
+        "model_name": "Sales Regression Model",
+        "variant": "Ridge alpha=2.0",
+        "hyperparameters": {
+          "alpha": 2.0,
+          "target_transform": "log1p"
+        },
+        "status": "benchmarked",
+        "mae": 9.647,
+        "rmse": 12.0334,
+        "r2": 0.8157
+      },
+      {
+        "model_name": "Sales Regression Model",
+        "variant": "Ridge alpha=1.0",
+        "hyperparameters": {
+          "alpha": 1.0,
+          "target_transform": "log1p"
+        },
+        "status": "benchmarked",
+        "mae": 9.7055,
+        "rmse": 12.1191,
+        "r2": 0.813
+      },
+      {
+        "model_name": "Sales Regression Model",
+        "variant": "Ridge alpha=0.5",
+        "hyperparameters": {
+          "alpha": 0.5,
+          "target_transform": "log1p"
+        },
+        "status": "benchmarked",
+        "mae": 9.7627,
+        "rmse": 12.2001,
+        "r2": 0.8105
+      }
+    ],
+    "comparison_chart": [
+      {
+        "label": "Ridge alpha=5.0",
+        "value": 0.8193,
+        "metric": "R^2"
+      },
+      {
+        "label": "Ridge alpha=2.0",
+        "value": 0.8157,
+        "metric": "R^2"
+      },
+      {
+        "label": "Ridge alpha=1.0",
+        "value": 0.813,
+        "metric": "R^2"
+      },
+      {
+        "label": "Ridge alpha=0.5",
+        "value": 0.8105,
+        "metric": "R^2"
+      }
+    ]
+  },
+  "experiment_groups": [
+    {
+      "group_key": "classification",
+      "title": "Classification Experiments",
+      "description": "Compare numeric-only logistic regression against the hybrid text + numeric priority classifier.",
+      "rows": [
+        {
+          "model_name": "Logistic Regression",
+          "variant": "numeric-only baseline",
+          "hyperparameters": {
+            "C": 1.0,
+            "features": "numeric"
+          },
+          "status": "benchmarked",
+          "accuracy": 0.82,
+          "precision_macro": 0.8214,
+          "recall_macro": 0.82,
+          "f1_macro": 0.8203,
+          "weighted_f1": 0.8204
+        },
+        {
+          "model_name": "Hybrid Logistic Regression",
+          "variant": "C=0.5",
+          "hyperparameters": {
+            "C": 0.5,
+            "features": "text + numeric"
+          },
+          "status": "benchmarked",
+          "accuracy": 0.815,
+          "precision_macro": 0.8168,
+          "recall_macro": 0.815,
+          "f1_macro": 0.8154,
+          "weighted_f1": 0.8155
+        },
+        {
+          "model_name": "Hybrid Logistic Regression",
+          "variant": "C=1.0",
+          "hyperparameters": {
+            "C": 1.0,
+            "features": "text + numeric"
+          },
+          "status": "benchmarked",
+          "accuracy": 0.81,
+          "precision_macro": 0.8108,
+          "recall_macro": 0.81,
+          "f1_macro": 0.8097,
+          "weighted_f1": 0.8098
+        },
+        {
+          "model_name": "Hybrid Logistic Regression",
+          "variant": "C=1.5",
+          "hyperparameters": {
+            "C": 1.5,
+            "features": "text + numeric"
+          },
+          "status": "benchmarked",
+          "accuracy": 0.805,
+          "precision_macro": 0.8065,
+          "recall_macro": 0.805,
+          "f1_macro": 0.8051,
+          "weighted_f1": 0.8052
+        },
+        {
+          "model_name": "Hybrid Logistic Regression",
+          "variant": "C=2.0",
+          "hyperparameters": {
+            "C": 2.0,
+            "features": "text + numeric"
+          },
+          "status": "benchmarked",
+          "accuracy": 0.7975,
+          "precision_macro": 0.7993,
+          "recall_macro": 0.7975,
+          "f1_macro": 0.7977,
+          "weighted_f1": 0.7978
+        }
+      ]
+    },
+    {
+      "group_key": "regression",
+      "title": "Sales Regression Experiments",
+      "description": "Compare a small set of precomputed Ridge alpha values for daily sales prediction.",
+      "rows": [
+        {
+          "model_name": "Sales Regression Model",
+          "variant": "Ridge alpha=5.0",
+          "hyperparameters": {
+            "alpha": 5.0,
+            "target_transform": "log1p"
+          },
+          "status": "benchmarked",
+          "mae": 9.5546,
+          "rmse": 11.9143,
+          "r2": 0.8193
+        },
+        {
+          "model_name": "Sales Regression Model",
+          "variant": "Ridge alpha=2.0",
+          "hyperparameters": {
+            "alpha": 2.0,
+            "target_transform": "log1p"
+          },
+          "status": "benchmarked",
+          "mae": 9.647,
+          "rmse": 12.0334,
+          "r2": 0.8157
+        },
+        {
+          "model_name": "Sales Regression Model",
+          "variant": "Ridge alpha=1.0",
+          "hyperparameters": {
+            "alpha": 1.0,
+            "target_transform": "log1p"
+          },
+          "status": "benchmarked",
+          "mae": 9.7055,
+          "rmse": 12.1191,
+          "r2": 0.813
+        },
+        {
+          "model_name": "Sales Regression Model",
+          "variant": "Ridge alpha=0.5",
+          "hyperparameters": {
+            "alpha": 0.5,
+            "target_transform": "log1p"
+          },
+          "status": "benchmarked",
+          "mae": 9.7627,
+          "rmse": 12.2001,
+          "r2": 0.8105
+        }
+      ]
+    }
+  ]
+}

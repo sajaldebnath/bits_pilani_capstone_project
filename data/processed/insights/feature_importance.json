@@ -1,0 +1,193 @@
+{
+  "generated_at": "2026-04-08T06:18:27+00:00",
+  "priority_model": {
+    "model_name": "Hybrid Logistic Regression",
+    "top_numeric_drivers_for_high_priority": [
+      {
+        "feature": "Fill Rate Pct",
+        "raw_feature": "num__Fill_Rate_Pct",
+        "coefficient": 3.4453,
+        "interpretation": "Higher fill rate means the supplier is more dependable at replenishment. In this model view it increases the signal for High stocking priority."
+      },
+      {
+        "feature": "Shelf Life Days",
+        "raw_feature": "num__Shelf_Life_Days",
+        "coefficient": 3.246,
+        "interpretation": "Long shelf life reduces spoilage pressure and supports stocking confidence. In this model view it increases the signal for High stocking priority."
+      },
+      {
+        "feature": "Current Price",
+        "raw_feature": "num__Current_Price",
+        "coefficient": 1.1707,
+        "interpretation": "Price shifts both perceived value and demand sensitivity. In this model view it increases the signal for High stocking priority."
+      },
+      {
+        "feature": "Website Visits",
+        "raw_feature": "num__Website_Visits",
+        "coefficient": 0.0811,
+        "interpretation": "Website traffic helps represent broader customer attention. In this model view it increases the signal for High stocking priority."
+      },
+      {
+        "feature": "Lead Time Days",
+        "raw_feature": "num__Lead_Time_Days",
+        "coefficient": 0.0672,
+        "interpretation": "Longer lead times make replenishment harder and usually lower confidence. In this model view it increases the signal for High stocking priority."
+      },
+      {
+        "feature": "Rainfall mm",
+        "raw_feature": "num__Rainfall_mm",
+        "coefficient": 0.0661,
+        "interpretation": "Weather can shift store traffic and short-term consumption patterns. In this model view it increases the signal for High stocking priority."
+      }
+    ],
+    "top_numeric_drivers_for_low_priority": [
+      {
+        "feature": "Supplier Delay Days",
+        "raw_feature": "num__Supplier_Delay_Days",
+        "coefficient": 1.3503,
+        "interpretation": "Supplier delays weaken confidence in keeping the item available. In this model view it increases the signal for Low stocking priority."
+      },
+      {
+        "feature": "Competitor Price",
+        "raw_feature": "num__Competitor_Price",
+        "coefficient": 1.0146,
+        "interpretation": "Relative price position affects competitiveness in-store. In this model view it increases the signal for Low stocking priority."
+      },
+      {
+        "feature": "Discount Percentage",
+        "raw_feature": "num__Discount_Percentage",
+        "coefficient": 0.7038,
+        "interpretation": "Discounts can help demand but should still be weighed against margin. In this model view it increases the signal for Low stocking priority."
+      },
+      {
+        "feature": "Shelf Capacity",
+        "raw_feature": "num__Shelf_Capacity",
+        "coefficient": 0.2812,
+        "interpretation": "Shelf capacity affects how much space the item consumes. In this model view it increases the signal for Low stocking priority."
+      },
+      {
+        "feature": "Marketing Spend",
+        "raw_feature": "num__Marketing_Spend",
+        "coefficient": 0.1297,
+        "interpretation": "Higher marketing support can strengthen expected pull from shoppers. In this model view it increases the signal for Low stocking priority."
+      },
+      {
+        "feature": "Repeat Purchase Rate",
+        "raw_feature": "num__Repeat_Purchase_Rate",
+        "coefficient": 0.1047,
+        "interpretation": "Repeat purchase rate is a signal of product stickiness. In this model view it increases the signal for Low stocking priority."
+      }
+    ],
+    "top_text_tokens_for_high_priority": [
+      {
+        "feature": "accessories",
+        "raw_feature": "text__accessories",
+        "coefficient": -0.6387
+      },
+      {
+        "feature": "bedding",
+        "raw_feature": "text__bedding",
+        "coefficient": 0.5797
+      },
+      {
+        "feature": "makeup",
+        "raw_feature": "text__makeup",
+        "coefficient": 0.5549
+      },
+      {
+        "feature": "dove",
+        "raw_feature": "text__dove",
+        "coefficient": 0.5248
+      },
+      {
+        "feature": "1003",
+        "raw_feature": "text__1003",
+        "coefficient": -0.4388
+      },
+      {
+        "feature": "1003 subcategory",
+        "raw_feature": "text__1003 subcategory",
+        "coefficient": -0.4388
+      }
+    ]
+  },
+  "sales_model": {
+    "model_name": "Sales Regression Model",
+    "top_numeric_drivers_for_sales": [
+      {
+        "feature": "Footfall Index",
+        "raw_feature": "num__Footfall_Index",
+        "coefficient": 0.1032,
+        "interpretation": "Higher footfall indicates stronger shopper traffic around the product. In this model view it increases the signal for higher daily sales."
+      },
+      {
+        "feature": "Competitor Price",
+        "raw_feature": "num__Competitor_Price",
+        "coefficient": 0.0405,
+        "interpretation": "Relative price position affects competitiveness in-store. In this model view it increases the signal for higher daily sales."
+      },
+      {
+        "feature": "Loyalty Program Usage Count",
+        "raw_feature": "num__Loyalty_Program_Usage_Count",
+        "coefficient": 0.0394,
+        "interpretation": "Loyalty usage reflects engaged repeat shoppers. In this model view it increases the signal for higher daily sales."
+      },
+      {
+        "feature": "Avg Basket Size",
+        "raw_feature": "num__Avg_Basket_Size",
+        "coefficient": 0.0241,
+        "interpretation": "Basket size gives context on cross-sell and shopping missions. In this model view it increases the signal for higher daily sales."
+      },
+      {
+        "feature": "Website Visits",
+        "raw_feature": "num__Website_Visits",
+        "coefficient": 0.0193,
+        "interpretation": "Website traffic helps represent broader customer attention. In this model view it increases the signal for higher daily sales."
+      },
+      {
+        "feature": "App Traffic Index",
+        "raw_feature": "num__App_Traffic_Index",
+        "coefficient": 0.0165,
+        "interpretation": "App activity acts as a digital demand signal. In this model view it increases the signal for higher daily sales."
+      }
+    ],
+    "top_text_tokens_for_sales": [
+      {
+        "feature": "kitchenware 1015",
+        "raw_feature": "text__kitchenware 1015",
+        "coefficient": 0.0822
+      },
+      {
+        "feature": "fragrance 1006",
+        "raw_feature": "text__fragrance 1006",
+        "coefficient": -0.0675
+      },
+      {
+        "feature": "audio 1007",
+        "raw_feature": "text__audio 1007",
+        "coefficient": 0.0671
+      },
+      {
+        "feature": "grains 1005",
+        "raw_feature": "text__grains 1005",
+        "coefficient": -0.0645
+      },
+      {
+        "feature": "activewear 1002",
+        "raw_feature": "text__activewear 1002",
+        "coefficient": 0.0621
+      },
+      {
+        "feature": "grains 1009",
+        "raw_feature": "text__grains 1009",
+        "coefficient": 0.0615
+      }
+    ]
+  },
+  "interpretability_notes": [
+    "Coefficient-based interpretation is especially useful here because both deployed models are linear.",
+    "Text tokens show semantic cues, while numeric coefficients connect directly to business levers such as fill rate, shelf life, and marketing spend.",
+    "Because numeric features are standardized, coefficient magnitudes are comparable within a model family.",
+    "The insights script refits analysis-only copies in the current environment so artifact generation stays stable even if saved sklearn versions differ."
+  ]
+}

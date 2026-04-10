@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-04-08T06:18:27+00:00",
+  "category_findings": {
+    "top_high_priority_categories": [
+      {
+        "category": "Home",
+        "records": 391,
+        "high_priority_share": 75.45,
+        "avg_profit_density": 22.38,
+        "avg_shelf_life_days": 2222.06
+      },
+      {
+        "category": "Clothing",
+        "records": 378,
+        "high_priority_share": 34.13,
+        "avg_profit_density": 28.07,
+        "avg_shelf_life_days": 943.53
+      },
+      {
+        "category": "Electronics",
+        "records": 387,
+        "high_priority_share": 33.59,
+        "avg_profit_density": 25.79,
+        "avg_shelf_life_days": 1394.49
+      },
+      {
+        "category": "Beauty",
+        "records": 402,
+        "high_priority_share": 20.15,
+        "avg_profit_density": 31.51,
+        "avg_shelf_life_days": 530.91
+      },
+      {
+        "category": "Grocery",
+        "records": 442,
+        "high_priority_share": 7.24,
+        "avg_profit_density": 24.23,
+        "avg_shelf_life_days": 42.65
+      }
+    ],
+    "top_profit_density_categories": [
+      {
+        "category": "Beauty",
+        "avg_profit_density": 31.51,
+        "avg_daily_units_sold": 112.24
+      },
+      {
+        "category": "Clothing",
+        "avg_profit_density": 28.07,
+        "avg_daily_units_sold": 113.26
+      },
+      {
+        "category": "Electronics",
+        "avg_profit_density": 25.79,
+        "avg_daily_units_sold": 110.69
+      },
+      {
+        "category": "Grocery",
+        "avg_profit_density": 24.23,
+        "avg_daily_units_sold": 113.4
+      },
+      {
+        "category": "Home",
+        "avg_profit_density": 22.38,
+        "avg_daily_units_sold": 111.59
+      }
+    ]
+  },
+  "perishability_findings": {
+    "short_shelf_life_threshold_days": 30.0,
+    "low_fill_rate_threshold_pct": 90.0,
+    "supplier_delay_threshold_days": 7.0,
+    "short_shelf_life_records_pct": 8.1,
+    "low_fill_rate_records_pct": 33.45,
+    "any_risk_flag_records_pct": 38.75,
+    "short_life_high_priority_share": 8.02
+  },
+  "recommendation_factors": [
+    {
+      "factor": "Sales",
+      "role": "Primary weighting input",
+      "business_interpretation": "This factor is explicitly weighted in the recommendation engine and changes by optimization goal."
+    },
+    {
+      "factor": "Profit",
+      "role": "Primary weighting input",
+      "business_interpretation": "This factor is explicitly weighted in the recommendation engine and changes by optimization goal."
+    },
+    {
+      "factor": "Profit Density",
+      "role": "Primary weighting input",
+      "business_interpretation": "This factor is explicitly weighted in the recommendation engine and changes by optimization goal."
+    },
+    {
+      "factor": "Priority",
+      "role": "Primary weighting input",
+      "business_interpretation": "This factor is explicitly weighted in the recommendation engine and changes by optimization goal."
+    },
+    {
+      "factor": "Stability",
+      "role": "Primary weighting input",
+      "business_interpretation": "This factor is explicitly weighted in the recommendation engine and changes by optimization goal."
+    }
+  ],
+  "plain_language_takeaways": [
+    "Home has the highest share of High-priority records in the current dataset view.",
+    "Shelf life, fill rate, and supplier delay remain core operational constraints, so the demo does not treat sales volume alone as the best answer.",
+    "Recommendation ranking combines demand, profit, shelf efficiency, and stability so the output looks like a retail decision-support tool rather than a single-model demo.",
+    "The insights tab uses precomputed experiment results to stay stable and coordinator-friendly during live demos."
+  ]
+}

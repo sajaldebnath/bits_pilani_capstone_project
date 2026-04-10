@@ -1,0 +1,10 @@
+{
+  "categories": ["Grocery"],
+  "brand_tiers": ["Budget"],
+  "promotion_types": ["BOGO"],
+  "store_types": ["Urban"],
+  "price_max": 20,
+  "shelf_life_max": 30,
+  "sort_by": "avg_daily_units_sold",
+  "top_n": 8
+}
